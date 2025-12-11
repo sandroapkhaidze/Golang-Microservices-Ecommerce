@@ -1,0 +1,117 @@
+version: '3.8' 
+
+services:
+  # PostgreSQL Databases (6 separate databases)
+  postgres-user:
+    image: postgres:15-alpine
+    container_name: postgres-user
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: userdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-user-data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  postgres-order:
+    image: postgres:15-alpine
+    container_name: postgres-order
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: orderdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-order-data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  postgres-inventory:
+    image: postgres:15-alpine
+    container_name: postgres-inventory
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: inventorydb
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-inventory-data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  postgres-payment:
+    image: postgres:15-alpine
+    container_name: postgres-payment
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: paymentdb
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-payment-data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  postgres-notification:
+    image: postgres:15-alpine
+    container_name: postgres-notification
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: notificationdb
+    ports:
+      - "5436:5432"
+    volumes:
+      - postgres-notification-data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  postgres-gateway:
+    image: postgres:15-alpine
+    container_name: postgres-gateway
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gatewaydb
+    ports:
+      - "5437:5432"
+    volumes:
+      - postgres-gateway-data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  # RabbitMQ Message Broker
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - "5672:5672"   # AMQP protocol port
+      - "15672:15672" # Management UI port
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    networks:
+      - microservices-network
+
+# Networks
+networks:
+  microservices-network:
+    driver: bridge
+
+# Volumes for data persistence
+volumes:
+  postgres-user-data:
+  postgres-order-data:
+  postgres-inventory-data:
+  postgres-payment-data:
+  postgres-notification-data:
+  postgres-gateway-data:
+  rabbitmq-data:
