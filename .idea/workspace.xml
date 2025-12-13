@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5759a258-d5c2-474f-936d-cd39832a239c" name="Changes" comment="feat(user-service): implement domain and infrastructure layers with sqlc&#10;&#10;- Create User entity with password hashing (bcrypt)&#10;- Define UserRepository interface in domain layer&#10;- Implement PostgresUserRepository using sqlc-generated code&#10;- Add UUID conversion between domain (string) and database (uuid.UUID)&#10;- Create database schema with users table and indexes&#10;- Write type-safe SQL queries for all CRUD operations&#10;- Add PostgreSQL connection configuration&#10;&#10;Clean Architecture: Domain defines interface, Infrastructure implements it using sqlc.">
-      <change afterPath="$PROJECT_DIR$/user-service/internal/infrastructure/config/database.go" afterDir="false" />
+    <list default="true" id="5759a258-d5c2-474f-936d-cd39832a239c" name="Changes" comment="feat(user-service): add database configuration&#10;&#10;- Create DatabaseConfig struct for PostgreSQL connection&#10;- Implement NewDatabase function with connection pooling&#10;- Add connection health check with Ping&#10;- Configure max open/idle connections for performance&#10;- Use lib/pq PostgreSQL driver">
+      <change afterPath="$PROJECT_DIR$/user-service/internal/presentation/http/router.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/internal/presentation/http/user_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +28,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HttpClientOnboardingState"><![CDATA[{
+  "isOnboardingCommentShown": true
+}]]></component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
 }]]></component>
@@ -34,6 +49,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
+    "HTTP Request.generated-requests | #1.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.GoLinterPluginOnboardingV2": "true",
     "RunOnceActivity.GoLinterPluginStorageMigration": "true",
@@ -54,6 +70,29 @@
     "to.speed.mode.migration.done": "true"
   }
 }]]></component>
+  <component name="RunDashboard">
+    <option name="configurationStatuses">
+      <map>
+        <entry key="HttpClient.HttpRequestRunConfigurationType">
+          <value>
+            <map>
+              <entry key="generated-requests | #1" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.generated-requests | #1" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -80,6 +119,7 @@
     <MESSAGE value="&quot;feat(user-service): implement domain layer with User entity&#10;&#10;- Create User entity with business logic (HashPassword, CheckPassword)&#10;- Define UserRepository interface following Repository pattern&#10;- Implement user roles (customer, admin)&#10;- Add password hashing with bcrypt&#10;- Follow Clean Architecture: domain has no external dependencies&#10;&#10;Domain layer is framework-agnostic and contains only business rules.&quot;" />
     <MESSAGE value="feat(user-service): implement application layer with DTOs and use cases&#10;&#10;- Create DTOs for registration, login, and user responses&#10;- Implement RegisterUserUseCase with email validation and password hashing&#10;- Implement LoginUserUseCase with authentication logic&#10;- Add validation rules using binding tags&#10;- Separate request/response models from domain entities&#10;&#10;Application layer orchestrates domain logic without knowing about HTTP or database details." />
     <MESSAGE value="feat(user-service): implement domain and infrastructure layers with sqlc&#10;&#10;- Create User entity with password hashing (bcrypt)&#10;- Define UserRepository interface in domain layer&#10;- Implement PostgresUserRepository using sqlc-generated code&#10;- Add UUID conversion between domain (string) and database (uuid.UUID)&#10;- Create database schema with users table and indexes&#10;- Write type-safe SQL queries for all CRUD operations&#10;- Add PostgreSQL connection configuration&#10;&#10;Clean Architecture: Domain defines interface, Infrastructure implements it using sqlc." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(user-service): implement domain and infrastructure layers with sqlc&#10;&#10;- Create User entity with password hashing (bcrypt)&#10;- Define UserRepository interface in domain layer&#10;- Implement PostgresUserRepository using sqlc-generated code&#10;- Add UUID conversion between domain (string) and database (uuid.UUID)&#10;- Create database schema with users table and indexes&#10;- Write type-safe SQL queries for all CRUD operations&#10;- Add PostgreSQL connection configuration&#10;&#10;Clean Architecture: Domain defines interface, Infrastructure implements it using sqlc." />
+    <MESSAGE value="feat(user-service): add database configuration&#10;&#10;- Create DatabaseConfig struct for PostgreSQL connection&#10;- Implement NewDatabase function with connection pooling&#10;- Add connection health check with Ping&#10;- Configure max open/idle connections for performance&#10;- Use lib/pq PostgreSQL driver" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(user-service): add database configuration&#10;&#10;- Create DatabaseConfig struct for PostgreSQL connection&#10;- Implement NewDatabase function with connection pooling&#10;- Add connection health check with Ping&#10;- Configure max open/idle connections for performance&#10;- Use lib/pq PostgreSQL driver" />
   </component>
 </project>
