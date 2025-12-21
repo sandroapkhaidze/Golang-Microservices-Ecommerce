@@ -4,11 +4,25 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5759a258-d5c2-474f-936d-cd39832a239c" name="Changes" comment="feat(user-service): implement presentation layer with Gin HTTP handlers&#10;&#10;- Create UserHandler with Register and Login endpoints&#10;- Implement request validation using Gin binding&#10;- Add health check endpoint&#10;- Setup router with API versioning (/api/v1)&#10;- Create main.go with dependency injection&#10;- Wire together all layers: Presentation → Application → Domain → Infrastructure&#10;- Add environment variable configuration&#10;&#10;User service is now runnable with REST API endpoints.">
-      <change afterPath="$PROJECT_DIR$/user-service/migrations/001_create_users_table.sql" afterDir="false" />
+    <list default="true" id="5759a258-d5c2-474f-936d-cd39832a239c" name="Changes" comment="...">
+      <change afterPath="$PROJECT_DIR$/inventory-service/cmd/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/application/usecase/reserve_stock.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/domain/entity/product.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/domain/repository/inventory_repository.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/infrastructure/config/database.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/infrastructure/messaging/order_event_consumer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/infrastructure/persistence/postgres_inventory_repository.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/infrastructure/persistence/queries/products.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/infrastructure/persistence/sqlc/db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/infrastructure/persistence/sqlc/models.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/infrastructure/persistence/sqlc/products.sql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/internal/infrastructure/persistence/sqlc/querier.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/migrations/001_create_products_table.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/sqlc.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/go.imports.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/go.imports.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/internal/infrastructure/persistence/schema/001_users.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/sqlc.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/sqlc.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/architecture.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/architecture.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/go.mod" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,13 +75,24 @@
     "git-widget-placeholder": "main",
     "go.sdk.automatically.set": "true",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/sandroapkhaidze",
+    "last_opened_file_path": "/Users/sandroapkhaidze/Projects/Golang-Microservices-Ecommerce/inventory-service",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "to.speed.mode.migration.done": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/inventory-service" />
+      <recent name="$PROJECT_DIR$/order-service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/inventory-service/internal/infrastructure/persistence" />
+      <recent name="$PROJECT_DIR$/inventory-service/internal/domain/entity" />
+      <recent name="$PROJECT_DIR$/order-service/migrations" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationStatuses">
       <map>
@@ -113,12 +138,19 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="..." />
     <MESSAGE value="&quot;feat(user-service): implement domain layer with User entity&#10;&#10;- Create User entity with business logic (HashPassword, CheckPassword)&#10;- Define UserRepository interface following Repository pattern&#10;- Implement user roles (customer, admin)&#10;- Add password hashing with bcrypt&#10;- Follow Clean Architecture: domain has no external dependencies&#10;&#10;Domain layer is framework-agnostic and contains only business rules.&quot;" />
     <MESSAGE value="feat(user-service): implement application layer with DTOs and use cases&#10;&#10;- Create DTOs for registration, login, and user responses&#10;- Implement RegisterUserUseCase with email validation and password hashing&#10;- Implement LoginUserUseCase with authentication logic&#10;- Add validation rules using binding tags&#10;- Separate request/response models from domain entities&#10;&#10;Application layer orchestrates domain logic without knowing about HTTP or database details." />
     <MESSAGE value="feat(user-service): implement domain and infrastructure layers with sqlc&#10;&#10;- Create User entity with password hashing (bcrypt)&#10;- Define UserRepository interface in domain layer&#10;- Implement PostgresUserRepository using sqlc-generated code&#10;- Add UUID conversion between domain (string) and database (uuid.UUID)&#10;- Create database schema with users table and indexes&#10;- Write type-safe SQL queries for all CRUD operations&#10;- Add PostgreSQL connection configuration&#10;&#10;Clean Architecture: Domain defines interface, Infrastructure implements it using sqlc." />
     <MESSAGE value="feat(user-service): add database configuration&#10;&#10;- Create DatabaseConfig struct for PostgreSQL connection&#10;- Implement NewDatabase function with connection pooling&#10;- Add connection health check with Ping&#10;- Configure max open/idle connections for performance&#10;- Use lib/pq PostgreSQL driver" />
     <MESSAGE value="feat(user-service): implement presentation layer with Gin HTTP handlers&#10;&#10;- Create UserHandler with Register and Login endpoints&#10;- Implement request validation using Gin binding&#10;- Add health check endpoint&#10;- Setup router with API versioning (/api/v1)&#10;- Create main.go with dependency injection&#10;- Wire together all layers: Presentation → Application → Domain → Infrastructure&#10;- Add environment variable configuration&#10;&#10;User service is now runnable with REST API endpoints." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(user-service): implement presentation layer with Gin HTTP handlers&#10;&#10;- Create UserHandler with Register and Login endpoints&#10;- Implement request validation using Gin binding&#10;- Add health check endpoint&#10;- Setup router with API versioning (/api/v1)&#10;- Create main.go with dependency injection&#10;- Wire together all layers: Presentation → Application → Domain → Infrastructure&#10;- Add environment variable configuration&#10;&#10;User service is now runnable with REST API endpoints." />
+    <MESSAGE value="refactor(user-service): consolidate schema into migrations folder&#10;&#10;- Remove duplicate schema folder&#10;- Configure sqlc to read schema from migrations/ &#10;- Single source of truth for database schema&#10;- Migrations now serve dual purpose: DB creation + sqlc code generation&#10;&#10;This eliminates duplication and prevents schema drift." />
+    <MESSAGE value="feat(order-service): implement domain layer with Order entities&#10;&#10;- Create Order entity with status management methods&#10;- Create OrderItem entity with subtotal calculation&#10;- Implement OrderRepository interface for data operations&#10;- Add order status state machine (Pending → Processing → Completed/Failed)&#10;- Add CorrelationID for distributed transaction tracking&#10;- Define business rules in domain layer (CalculateTotal, CanBeCancelled)&#10;&#10;Domain layer contains pure business logic with no external dependencies." />
+    <MESSAGE value="feat(order-service): add database schema and sqlc queries&#10;&#10;- Create orders table with status tracking and correlation_id&#10;- Create order_items table with foreign key to orders&#10;- Add indexes for user_id, status, correlation_id, and order_id&#10;- Implement auto-update trigger for orders.updated_at&#10;- Write sqlc queries for CRUD operations&#10;- Generate type-safe Go code from SQL with sqlc&#10;&#10;Schema supports distributed transactions via correlation_id for Saga pattern." />
+    <MESSAGE value="feat(order-service): implement PostgreSQL repository with sqlc&#10;&#10;- Create PostgresOrderRepository implementing OrderRepository interface&#10;- Implement transactional Create method for orders and items&#10;- Add GetByID with order items fetching&#10;- Add GetByUserID with pagination support&#10;- Implement UpdateStatus for order state management&#10;- Add GetByCorrelationID for Saga pattern tracking&#10;- Create entity conversion helpers (toOrderEntity, toOrderItemEntities)&#10;- Handle UUID conversions and decimal parsing&#10;&#10;Repository uses database transactions to ensure data consistency." />
+    <MESSAGE value="feat(order-service): add DTOs and database configuration&#10;&#10;- Create CreateOrderRequest with items validation&#10;- Add OrderResponse with proper data types&#10;- Create OrderItemRequest and OrderItemResponse DTOs&#10;- Add validation rules (required, min=1, gt=0)&#10;- Add database configuration for PostgreSQL connection&#10;&#10;DTOs define the API contract for order creation and responses" />
+    <MESSAGE value="feat(order-service): implement CreateOrderUseCase with event publishing&#10;&#10;- Create CreateOrderUseCase for order creation business logic&#10;- Generate unique order ID and correlation ID for Saga tracking&#10;- Convert DTO items to domain entities with proper IDs&#10;- Calculate order total amount using domain logic&#10;- Persist order and items to database via repository&#10;- Publish OrderCreatedEvent to RabbitMQ for other services&#10;- Add helper functions for entity/DTO conversions&#10;- Handle event publishing errors gracefully with logging&#10;&#10;Use case orchestrates domain logic and publishes events for distributed transaction flow." />
+    <MESSAGE value="feat(order-service): implement presentation layer and main application&#10;&#10;- Create OrderHandler with CreateOrder and Health endpoints&#10;- Add Swagger/OpenAPI documentation comments&#10;- Implement router with API versioning (/api/v1)&#10;- Create main.go with complete dependency injection&#10;- Wire together all layers: infrastructure, application, presentation&#10;- Configure RabbitMQ connection for event publishing&#10;- Set up HTTP server on port 8082&#10;&#10;Order service is now complete and runnable with REST API and event-driven architecture." />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
 </project>

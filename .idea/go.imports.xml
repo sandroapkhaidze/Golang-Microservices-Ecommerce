@@ -4,6 +4,7 @@
     <option name="excludedPackages">
       <array>
         <option value="github.com/pkg/errors" />
+        <option value="github.com/sandroapkhaidze/Golang-Microservices-Ecommerce/order-service/internal/infrastructure/persistence/sqlc" />
         <option value="golang.org/x/net/context" />
       </array>
     </option>
