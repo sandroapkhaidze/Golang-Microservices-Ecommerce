@@ -78,3 +78,16 @@ func (c *EventConsumer) Consume(handler EventHandler) error {
 
 	return nil
 }
+
+// Subscribe to a specific event type with a handler
+func (c *EventConsumer) Subscribe(eventType string, handler func([]byte) error) error {
+	// Wrap the handler to filter by event type
+	eventHandler := func(receivedEventType string, body []byte) error {
+		if receivedEventType == eventType {
+			return handler(body)
+		}
+		return nil // Ignore events we're not interested in
+	}
+
+	return c.Consume(eventHandler)
+}
