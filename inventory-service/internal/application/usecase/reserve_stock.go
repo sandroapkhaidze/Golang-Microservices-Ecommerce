@@ -25,7 +25,7 @@ func NewReserveStockUseCase(
 }
 
 func (uc *ReserveStockUseCase) Execute(ctx context.Context, event events.OrderCreatedEvent) error {
-	productIDs := make([]string, 0, len(event.Items))
+	productIDs := make([]string, len(event.Items))
 	for _, item := range event.Items {
 		productIDs = append(productIDs, item.ProductID)
 	}
