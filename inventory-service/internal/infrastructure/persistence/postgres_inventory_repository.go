@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"log"
 
 	"github.com/google/uuid"
 	"github.com/sandroapkhaidze/Golang-Microservices-Ecommerce/inventory-service/internal/domain/entity"
@@ -115,14 +116,22 @@ func (r *PostgresInventoryRepository) GetActiveProducts(ctx context.Context) ([]
 }
 
 func (r *PostgresInventoryRepository) GetByIDs(ctx context.Context, ids []string) ([]*entity.Product, error) {
+	log.Printf("DEBUG GetByIDs: received %d IDs: %v", len(ids), ids) // ADD THIS
+
 	uids := make([]uuid.UUID, len(ids))
 	for i, id := range ids {
+		log.Printf("DEBUG: Parsing ID[%d]: %s", i, id) // ADD THIS
+
 		uid, err := parseStringToUUID(id)
 		if err != nil {
-			return nil, errors.New("invalid user ID format")
+			log.Printf("DEBUG: Failed to parse ID[%d] '%s': %v", i, id, err) // ADD THIS
+			return nil, errors.New("invalid product ID format")
 		}
 		uids[i] = uid
 	}
+
+	log.Printf("DEBUG: Successfully parsed all UUIDs, querying database") // ADD THIS
+
 	rows, err := r.queries.GetProductsByIDs(ctx, uids)
 	if err != nil {
 		return nil, err
